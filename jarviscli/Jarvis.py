@@ -52,7 +52,8 @@ class Jarvis(CmdInterpreter, object):
 
     def __init__(self, first_reaction_text=first_reaction_text,
                  prompt=prompt, first_reaction=True,
-                 directories=["jarviscli/plugins", "custom"]):
+                 directories=None):
+        directories = ["jarviscli/plugins", "custom"] if directories is None else directories
         directories = self._rel_path_fix(directories)
 
         if sys.platform == 'win32':
