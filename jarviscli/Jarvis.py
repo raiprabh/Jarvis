@@ -92,7 +92,7 @@ class Jarvis(CmdInterpreter, object):
             line = "calculate " + line
             words = line.split()
         
-        if line.startswith("help") or line.startswith("status"):
+        if line.startswith(("help", "status")):
             return line
 
         if not words:
