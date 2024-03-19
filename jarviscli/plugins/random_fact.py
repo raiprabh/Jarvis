@@ -7,7 +7,7 @@ import requests
 @plugin("fact")
 def hello_world(jarvis,s):
     url = 'https://uselessfacts.jsph.pl/random.json?language=en'
-    resp = requests.get(url)
+    resp = requests.get(url, timeout=60)
 
     if resp.status_code == 200:
         data = resp.json()

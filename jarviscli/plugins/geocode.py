@@ -154,7 +154,7 @@ class Geocoder:
             encountered during the request, the return will be None.
         """
         try:
-            response = requests.get(self.url)
+            response = requests.get(self.url, timeout=60)
             # Raise HTTPErrors if encountered
             response.raise_for_status()
             return response

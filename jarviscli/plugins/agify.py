@@ -9,7 +9,7 @@ def agify(jarvis, s):
     """Tells the age of someone based on his name, powered by www.boredapi.com"""
 
     if (s):
-        req = requests.get("https://api.agify.io?name=" + s)
+        req = requests.get("https://api.agify.io?name=" + s, timeout=60)
         data = req.json()
         if data == "":
             jarvis.say("Sorry, an error occured", Fore.BLUE)

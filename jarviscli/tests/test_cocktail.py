@@ -15,7 +15,7 @@ class CocktailTest(PluginTest):
         available_ingridients = self.test.ingridients
         for i in available_ingridients:
             response = requests.get(
-                f"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i={i}")
+                f"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i={i}", timeout=60)
             self.assertTrue(response.ok)
 
     def test_sample_cocktails_by_ingridient(self):
@@ -25,7 +25,7 @@ class CocktailTest(PluginTest):
         cocktails = self.test.get_cocktails_by_ingridient(random_base_ingridient)
         for c in cocktails:
             response = requests.get(
-                f"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i={c}")
+                f"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i={c}", timeout=60)
             self.assertTrue(response.ok)
 
     def test_is_out_of_range_true(self):

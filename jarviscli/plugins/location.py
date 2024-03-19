@@ -10,7 +10,7 @@ from plugin import plugin, require
 def location(jarvis, s):
     """It gives you your current location"""
     send_url = "http://api.ipstack.com/check?access_key=aafa3f03dc42cd4913a79fd2d9ce514d"
-    geo_req = requests.get(send_url)
+    geo_req = requests.get(send_url, timeout=60)
     geo_json = json.loads(geo_req.text)
     latitude = geo_json['latitude']
     latitude = str(latitude)

@@ -41,7 +41,7 @@ def main(jarvis, s):
             location, '7', units['url_units'])
     )
 
-    r = requests.get(send_url)
+    r = requests.get(send_url, timeout=60)
     j = json.loads(r.text)
 
     week_from_today = WeekDay().get_week_from_today()

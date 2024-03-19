@@ -41,7 +41,7 @@ def mars_weather(jarvis, s):
 
 
 def fetch():
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, timeout=60)
     r = r.json()
     if "errorCode" in r.keys():
         return None
