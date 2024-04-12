@@ -15,7 +15,7 @@ def update_system__macos(jarvis, s):
 @require(native='lsb_release')
 @plugin("update system")
 def update_system(jarvis, s):
-    user_distributor_id = subprocess.check_output('lsb_release -i', shell=True)
+    user_distributor_id = subprocess.check_output('lsb_release -i', shell=False)
     user_distribution = user_distributor_id.decode("utf-8").split('\t')[1]
 
     print(user_distribution)

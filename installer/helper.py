@@ -106,7 +106,7 @@ def shell(cmd):
 
     cli_output = ''
     try:
-        cli_output = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, universal_newlines=True)
+        cli_output = subprocess.check_output(cmd, shell=False, stderr=subprocess.STDOUT, universal_newlines=True)
     except subprocess.CalledProcessError as e:
         raise ShellException(str(e), output=str(e.output))
 

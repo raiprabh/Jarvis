@@ -66,8 +66,7 @@ class MacManagerLinux():
 
     def request_devices(self, jarvis):
         out = subprocess.Popen(["ip link"], universal_newlines=True,
-                               shell=True,
-                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+                               shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
                                )
         (res, stderr) = out.communicate()
         res = str(res)
@@ -106,24 +105,23 @@ class MacManagerLinux():
 
     def change_mac(self, device, mac, jarvis):
         down = subprocess.Popen([f"sudo ip link set {device} down"],
-                                shell=True, universal_newlines=True,
+                                shell=False, universal_newlines=True,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         down.communicate()
         change = subprocess.Popen([f"sudo ip link set {device} address {mac}"],
-                                  shell=True, universal_newlines=True,
+                                  shell=False, universal_newlines=True,
                                   stdout=subprocess.PIPE,
                                   stderr=subprocess.STDOUT)
         up = subprocess.Popen([f"sudo ip link set {device} up"],
-                              shell=True, universal_newlines=True,
+                              shell=False, universal_newlines=True,
                               stdout=subprocess.PIPE,
                               stderr=subprocess.STDOUT)
         restart = subprocess.Popen(["sudo service network-manager restart"],
-                                   shell=True, universal_newlines=True,
+                                   shell=False, universal_newlines=True,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT)
-        new_out = subprocess.Popen(["ip link"], shell=True,
-                                   universal_newlines=True,
+        new_out = subprocess.Popen(["ip link"], shell=False, universal_newlines=True,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT)
         (new_res, stderr) = new_out.communicate()

@@ -102,7 +102,7 @@ class WifiPasswordGetterLINUX:
         """
         path = "/etc/NetworkManager/system-connections/"
         display = subprocess.Popen([f"sudo grep -r '^psk=' {path}{ssid}"],
-                                   shell=True, universal_newlines=True,
+                                   shell=False, universal_newlines=True,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT)
         (new_res, stderr) = display.communicate()
