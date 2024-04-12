@@ -1,7 +1,7 @@
 from plugin import plugin
-import random
 import string
 from colorama import Fore
+import secrets
 
 
 @plugin("random password")
@@ -33,5 +33,5 @@ def random_password(jarvis, s):
 
     """Generate a random string of fixed length """
     pre_text = 'Your random password is: '
-    jarvis.say(pre_text + ''.join(random.choice(password)
+    jarvis.say(pre_text + ''.join(secrets.choice(password)
                                   for _ in range(string_length)))

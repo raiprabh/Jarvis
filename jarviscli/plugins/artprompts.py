@@ -1,9 +1,9 @@
 from plugin import plugin
-import random
 from colorama import Fore
 import json
 from packages.memory.memory import Memory
 import os
+import secrets
 
 FILE_PATH = os.path.abspath(os.path.dirname(__file__))
 
@@ -32,7 +32,7 @@ class art_promps():
                 return html.replace(tag + string + tag, item, 1)
 
     def selectItem(self, listName, lists):
-        return random.choice(lists[listName])
+        return secrets.choice(lists[listName])
 
     def changeA(self, html):
         htmlList = html.split()
