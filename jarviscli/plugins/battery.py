@@ -2,6 +2,7 @@ import os
 import subprocess
 
 from plugin import LINUX, WINDOWS, plugin, require
+from security import safe_command
 
 VALID_OPTIONS = ['status', 'vendor', 'energy', 'technology', 'remaining']
 
@@ -79,7 +80,7 @@ def get_specific_info(info_required):
     )
 
     # From the above output, only get the specific info required
-    specific_info_command = subprocess.Popen(grep_command,
+    specific_info_command = safe_command.run(subprocess.Popen, grep_command,
                                              stdin=battery_info_command.stdout,
                                              stdout=subprocess.PIPE
                                              )
