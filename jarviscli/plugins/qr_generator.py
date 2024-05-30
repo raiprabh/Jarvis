@@ -127,10 +127,10 @@ class QRGenerator:
             response = requests.get(query)
             # where the png file will be stored
             location = os.path.join(self.path,self.filename + '.png')
-            file = open(location, "wb")
-            file.write(response.content)
-            jarvis.spinner_stop()
-            file.close
+            with open(location, "wb") as file:
+                file.write(response.content)
+                jarvis.spinner_stop()
+                file.close
         except BaseException:
             jarvis.spinner_stop(
             message="\nTask execution Failed!", color=Fore.RED)
