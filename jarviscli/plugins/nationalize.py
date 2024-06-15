@@ -1,13 +1,13 @@
-import requests
 from colorama import Fore
 from plugin import plugin, require
+from security import safe_requests
 
 
 @require(network=True)
 @plugin("nationalize")
 def nationalize(jarvis, s):
     """Tells the nationality of someone based on his name, powered by www.boredapi.com"""
-    req = requests.get("https://api.nationalize.io?name=" + s)
+    req = safe_requests.get("https://api.nationalize.io?name=" + s)
     data = req.json()
     if data == "":
         jarvis.say("Sorry, an error occured", Fore.BLUE)
@@ -17,7 +17,7 @@ def nationalize(jarvis, s):
         return
     response = "There are "
     for nationality in data.get('country'):
-        req = requests.get("https://restcountries.eu/rest/v2/alpha/" +
+        req = safe_requests.get("https://restcountries.eu/rest/v2/alpha/" +
                            nationality.get('country_id').lower())
         country = req.json()
         response += str(round(nationality.get('probability') * 100)) + \

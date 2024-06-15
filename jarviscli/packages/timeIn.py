@@ -2,8 +2,8 @@
 import os
 import shutil
 import json
-import requests
 from colorama import Fore
+from security import safe_requests
 
 # this sets the path to the modules directory not the directory it was
 # call from
@@ -41,7 +41,7 @@ def main(self, s):
         "key=BFA6XBCZ8AL5&format=json"
         "&by=position&lat={:.6f}&lng={:.6f}".format(*loc)
     )
-    r = requests.get(send_url)
+    r = safe_requests.get(send_url)
     j = json.loads(r.text)
     time = j['formatted']
     self.dst = j['dst']
@@ -70,7 +70,7 @@ def getLocation(s):
         "https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}".format(s, key))
     # https://developers.google.com/maps/documentation/geocoding/start?hl=en_US
     # https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
-    r = requests.get(send_url)
+    r = safe_requests.get(send_url)
     j = json.loads(r.text)
     try:
         lat = j['results'][0]['geometry']['location']['lat']    # Latitude

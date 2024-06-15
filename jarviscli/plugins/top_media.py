@@ -1,6 +1,6 @@
 from plugin import plugin, require
-import requests
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 valid_genres = [
     "comedy",
@@ -79,7 +79,7 @@ class topmedia:
                 + "&explore=title_type,genres&title_type="
                 + title_type
             )
-            r = requests.get(url)
+            r = safe_requests.get(url)
             soup = BeautifulSoup(r.content, "html.parser")
             table = soup.find("div", attrs={"class": "lister-list"})
             i = 0

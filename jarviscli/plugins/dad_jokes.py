@@ -1,5 +1,5 @@
-import requests
 from plugin import plugin, require, alias
+from security import safe_requests
 
 """
 Tells a random dad joke from https://icanhazdadjoke.com
@@ -20,6 +20,6 @@ class dad_joke:
     def __call__(self, jarvis, s):
         api_url = 'https://icanhazdadjoke.com'
         header = {'Accept': 'application/json'}
-        r = requests.get(api_url, headers=header)
+        r = safe_requests.get(api_url, headers=header)
 
         jarvis.say(r.json()['joke'])

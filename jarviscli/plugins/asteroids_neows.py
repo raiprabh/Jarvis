@@ -1,7 +1,7 @@
-import requests
 from colorama import Fore
 from plugin import plugin, require
 import datetime
+from security import safe_requests
 
 API_KEY = '1ebd3b92bf5041249f8c1e7a540ce98c'
 headers = {'X-Auth-Token': API_KEY}
@@ -92,7 +92,7 @@ def get_option(jarvis):
 
 
 def fetch(url):
-    r = requests.get(url, headers=headers)
+    r = safe_requests.get(url, headers=headers)
     r = r.json()
     if "errorCode" in r.keys():
         return None

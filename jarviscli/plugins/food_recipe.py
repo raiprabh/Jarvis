@@ -1,7 +1,7 @@
-import requests
 from plugin import plugin, require
 from colorama import Fore
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 
 @require(network=True)
@@ -64,7 +64,7 @@ def getChoices(jarvis, s):
 def getAllRecipes(apiKey, cuisine):
     url = f"https://api.spoonacular.com/recipes/complexSearch?apiKey={apiKey}&cuisine={cuisine}&includeNutrition=true."
 
-    response = requests.get(url)
+    response = safe_requests.get(url)
     # print(response)
 
     if response.status_code == 200:
@@ -107,7 +107,7 @@ def getAllRecipes(apiKey, cuisine):
 
         # now get the recipe info from the id
         url2 = f"https://api.spoonacular.com/recipes/{selectedId}/information?apiKey={apiKey}&includeNutrition=false"
-        responseRecipeInformation = requests.get(url2)
+        responseRecipeInformation = safe_requests.get(url2)
 
         if responseRecipeInformation.status_code == 200:
 

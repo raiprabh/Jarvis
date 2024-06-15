@@ -1,12 +1,12 @@
-import requests
 from colorama import Fore
 from plugin import plugin, require
 import re
+from security import safe_requests
 
 def fetch(name):
     
     url = 'https://api.agify.io?name='
-    r = requests.get(url + name)
+    r = safe_requests.get(url + name)
     r = r.json()
     if "errorCode" in r.keys():
         return None

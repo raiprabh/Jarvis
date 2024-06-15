@@ -48,3 +48,4 @@ yeelight
 haversine
 FlightRadarAPI
 github3.py
+security==1.2.1

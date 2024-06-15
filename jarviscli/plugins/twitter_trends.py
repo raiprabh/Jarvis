@@ -14,8 +14,8 @@
 """
 from colorama import Fore
 from plugin import plugin, require, alias
-import requests
 import json
+from security import safe_requests
 
 
 @alias("trendtwit")
@@ -78,7 +78,7 @@ class TwitterTrends:
         Return data from given url in json format
         """
         try:
-            response = requests.get(URL)
+            response = safe_requests.get(URL)
         except:
             self.jarvis.say(
                 "Can not reach URL for the moment.")

@@ -2,6 +2,7 @@ import re
 import requests
 from colorama import Fore
 from plugin import plugin, require
+from security import safe_requests
 
 
 @require(network=True)
@@ -154,7 +155,7 @@ class Geocoder:
             encountered during the request, the return will be None.
         """
         try:
-            response = requests.get(self.url)
+            response = safe_requests.get(self.url)
             # Raise HTTPErrors if encountered
             response.raise_for_status()
             return response

@@ -1,10 +1,9 @@
 import datetime
 import random
-
-import requests
 from colorama import Fore
 
 from plugin import plugin, require
+from security import safe_requests
 
 
 @require(network=True)
@@ -209,7 +208,7 @@ class history:
         try:
             jarvis.spinner_start('Searching through history ')
             # send request
-            response = requests.get(query)
+            response = safe_requests.get(query)
             # parse into json
             result = response.json()
             # randomly et one of the facts
