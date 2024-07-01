@@ -20,6 +20,6 @@ class dad_joke:
     def __call__(self, jarvis, s):
         api_url = 'https://icanhazdadjoke.com'
         header = {'Accept': 'application/json'}
-        r = requests.get(api_url, headers=header)
+        r = requests.get(api_url, headers=header, timeout=60)
 
         jarvis.say(r.json()['joke'])

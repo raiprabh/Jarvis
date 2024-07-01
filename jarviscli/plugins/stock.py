@@ -55,7 +55,7 @@ class Stock:
     def get_stock_data(self, jarvis, quote):
         ''' Given a stock symbol, get the real time price of the stock '''
         url = 'https://financialmodelingprep.com/api/v3/stock/real-time-price/' + quote
-        resp = requests.get(url)
+        resp = requests.get(url, timeout=60)
 
         if(resp.status_code == 200):
             data = resp.json()
@@ -73,7 +73,7 @@ class Stock:
     def get_stock_id(self, jarvis, name):
         ''' Get the list of stock IDs given a company name or part of the company name '''
         url = 'https://financialmodelingprep.com/api/v3/company/stock/list'
-        resp = requests.get(url)
+        resp = requests.get(url, timeout=60)
 
         if(resp.status_code == 200):
             data = resp.json()
@@ -96,7 +96,7 @@ class Stock:
     def get_profile(self, jarvis, symbol):
         ''' Given a stock symbol get the company profile '''
         url = 'https://financialmodelingprep.com/api/v3/company/profile/' + symbol
-        resp = requests.get(url)
+        resp = requests.get(url, timeout=60)
 
         if(resp.status_code == 200):
             data = resp.json()
@@ -117,7 +117,7 @@ class Stock:
     def get_financial_stmt(self, jarvis, symbol):
         ''' Get the last annual financial statement of a company given it's stock symbol '''
         url = 'https://financialmodelingprep.com/api/v3/financials/income-statement/' + symbol
-        resp = requests.get(url)
+        resp = requests.get(url, timeout=60)
 
         if(resp.status_code == 200):
             data = resp.json()
@@ -132,7 +132,7 @@ class Stock:
     def get_gainers(self, jarvis):
         ''' Get the most gainers of the day '''
         url = 'https://financialmodelingprep.com/api/v3/stock/gainers'
-        resp = requests.get(url)
+        resp = requests.get(url, timeout=60)
 
         if(resp.status_code == 200):
             data = resp.json()
@@ -149,7 +149,7 @@ class Stock:
     def get_losers(self, jarvis):
         ''' Get the most losers of the day '''
         url = 'https://financialmodelingprep.com/api/v3/stock/losers'
-        resp = requests.get(url)
+        resp = requests.get(url, timeout=60)
 
         if(resp.status_code == 200):
             data = resp.json()

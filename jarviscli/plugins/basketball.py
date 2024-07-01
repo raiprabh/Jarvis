@@ -29,7 +29,7 @@ class basketball():
         return {"x-rapidapi-host": "api-basketball.p.rapidapi.com", "x-rapidapi-key": self.key}
 
     def fetch_data(self, route):
-        r = requests.get(URL + route, headers=self.get_headers())
+        r = requests.get(URL + route, headers=self.get_headers(), timeout=60)
         r = r.json()
         if "errorCode" in r.keys():
             return None

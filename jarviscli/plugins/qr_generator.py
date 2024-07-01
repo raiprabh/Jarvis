@@ -77,7 +77,7 @@ class QRGenerator:
                 if response == "end":
                     break
                 # tries to get website from URL 
-                website = requests.get(response)
+                website = requests.get(response, timeout=60)
                 break
             # list of possible exceptions from URLs with invalid form
             except requests.exceptions.MissingSchema:
@@ -124,7 +124,7 @@ class QRGenerator:
         try:
             # send request
             jarvis.spinner_start('Creating QR ')
-            response = requests.get(query)
+            response = requests.get(query, timeout=60)
             # where the png file will be stored
             location = os.path.join(self.path,self.filename + '.png')
             file = open(location, "wb")

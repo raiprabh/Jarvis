@@ -25,7 +25,7 @@ class Quote():
 
     def get_quote_of_the_day(self, jarvis):
         res = requests.get(
-            'https://quotes.rest/qod')
+            'https://quotes.rest/qod', timeout=60)
         if res.status_code == 200:
             data = res.text
             parse_json = json.loads(data)
@@ -40,7 +40,7 @@ class Quote():
         """
 
         while True:
-            res = requests.get(f'https://www.brainyquote.com/search_results?x=0&y=0&q={keyword}')
+            res = requests.get(f'https://www.brainyquote.com/search_results?x=0&y=0&q={keyword}', timeout=60)
             soup = BeautifulSoup(res.text, 'html.parser')
             quote_divs = soup.find_all('div', {'class': 'bqQt'})
 

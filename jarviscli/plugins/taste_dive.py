@@ -124,7 +124,7 @@ class TasteDive:
         try:
             # send request
             jarvis.spinner_start('Searching suggestions ')
-            response = requests.get(query)
+            response = requests.get(query, timeout=60)
             # parse into json
             result = response.json()
             # gets the value of "Similar"

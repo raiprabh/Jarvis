@@ -8,7 +8,7 @@ from plugin import plugin, require
 def activity(jarvis, s):
     """Tells a activity to do when you're bored, powered by www.boredapi.com"""
 
-    req = requests.get("https://www.boredapi.com/api/activity")
+    req = requests.get("https://www.boredapi.com/api/activity", timeout=60)
     data = req.json()
     response = ""
 

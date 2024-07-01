@@ -42,7 +42,7 @@ def get_voter_info(jarvis, s, address):
     url += "&address=" + urllib.parse.quote(str(address))
     if s:
         url += "&electionId=" + s
-    result = requests.get(url)
+    result = requests.get(url, timeout=60)
     voterInfo = result.json()
 
     # Return information to user

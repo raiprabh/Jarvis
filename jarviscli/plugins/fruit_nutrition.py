@@ -14,7 +14,7 @@ def fruit_nutrition(jarvis, s):
         return
 
     try:
-        response = requests.get(BASE_URL + fruit_name)
+        response = requests.get(BASE_URL + fruit_name, timeout=60)
         response.raise_for_status()  # raise HTTPError if status code is not 200
 
         data = response.json()

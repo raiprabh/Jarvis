@@ -209,7 +209,7 @@ class history:
         try:
             jarvis.spinner_start('Searching through history ')
             # send request
-            response = requests.get(query)
+            response = requests.get(query, timeout=60)
             # parse into json
             result = response.json()
             # randomly et one of the facts

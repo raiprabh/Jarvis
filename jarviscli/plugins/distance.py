@@ -23,7 +23,7 @@ class Distances:
 
         def geocode(self):
             url = f'https://restcountries.com/v3.1/name/{self.country_name}'
-            payload = requests.get(url)
+            payload = requests.get(url, timeout=60)
 
             if payload.status_code != 200:
                 self.coordinates = False

@@ -51,7 +51,7 @@ class CoronaInfo:
 
     def get_corona_info(self, country_name):
         url = "https://api.covid19api.com/summary"
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         # Intermittently URL responds with a message - You have reached maximum request limit.
         if response.text == "You have reached maximum request limit.":
             return "URLError"

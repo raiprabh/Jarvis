@@ -79,7 +79,7 @@ class topmedia:
                 + "&explore=title_type,genres&title_type="
                 + title_type
             )
-            r = requests.get(url)
+            r = requests.get(url, timeout=60)
             soup = BeautifulSoup(r.content, "html.parser")
             table = soup.find("div", attrs={"class": "lister-list"})
             i = 0

@@ -10,21 +10,21 @@ class TestNameDay(PluginTest):
         self.plugin.jarvis = self.jarvis_api
 
     def test_request_response(self):
-        response = requests.get("https://nameday.abalin.net/api/V1/today")
+        response = requests.get("https://nameday.abalin.net/api/V1/today", timeout=60)
         self.assertTrue(response.ok)
 
     def test_a_specific_date_from_the_api(self):
         # 17th of March in Greece
-        response = requests.get("https://nameday.abalin.net/api/V1/getdate?country=gr&day=17&month=3")
+        response = requests.get("https://nameday.abalin.net/api/V1/getdate?country=gr&day=17&month=3", timeout=60)
         response_body = response.json()
         self.assertTrue("Alexios" in response_body["nameday"]["gr"])
 
     def test_request_status(self):
-        request = requests.get("https://nameday.abalin.net/api/V1/today")
+        request = requests.get("https://nameday.abalin.net/api/V1/today", timeout=60)
         self.assertEqual(request.status_code, 200)
 
     def test_request_response_body(self):
-        response = requests.get("https://nameday.abalin.net/api/V1/getdate?day=18&month=11")
+        response = requests.get("https://nameday.abalin.net/api/V1/getdate?day=18&month=11", timeout=60)
         response_body = response.json()
         expected = {
             "day": 18,
@@ -56,7 +56,7 @@ class TestNameDay(PluginTest):
 
     def test_today(self):
         self.plugin.today()
-        request = requests.get("https://nameday.abalin.net/api/V1/today", params={"country": "gr"})
+        request = requests.get("https://nameday.abalin.net/api/V1/today", params={"country": "gr"}, timeout=60)
         request_body = request.json()["nameday"]["gr"]
         if request_body != "n/a":
             self.assertEqual(self.history_say().last_text(), "Say some kind words to " + request_body)
@@ -66,7 +66,7 @@ class TestNameDay(PluginTest):
 
     def test_tomorrow(self):
         self.plugin.tomorrow()
-        request = requests.get("https://nameday.abalin.net/api/V1/tomorrow", params={"country": "gr"})
+        request = requests.get("https://nameday.abalin.net/api/V1/tomorrow", params={"country": "gr"}, timeout=60)
         request_body = request.json()["nameday"]["gr"]
         if request_body != "n/a":
             self.assertEqual(self.history_say().last_text(), "Say some kind words to " + request_body)
@@ -79,7 +79,7 @@ class TestNameDay(PluginTest):
         month = 11
         self.queue_input(str(day) + "/" + str(month))
         self.plugin.specific_date()
-        request = requests.get("https://nameday.abalin.net/api/V1/getdate", params={"day": day, "month": month})
+        request = requests.get("https://nameday.abalin.net/api/V1/getdate", params={"day": day, "month": month}, timeout=60)
         request_body = request.json()["nameday"]["gr"]
         if request_body != "n/a":
             self.assertEqual(self.history_say().last_text(), "Say some kind words to "

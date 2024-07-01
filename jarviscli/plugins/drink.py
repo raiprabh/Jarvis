@@ -10,7 +10,7 @@ import json
 def cocktail(jarvis, s):
     cocktail = input("Enter a drink: ").strip()
     url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + cocktail
-    r = requests.get(url)
+    r = requests.get(url, timeout=60)
     json_data = json.loads(r.content)
     try:
         # collects the neccasary data from the JSON and saves in 

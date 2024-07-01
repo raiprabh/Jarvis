@@ -35,7 +35,7 @@ class country_info:
                 return
             else:
                 url = "https://restcountries.com/v3.1/name/" + country
-                r = requests.get(url)
+                r = requests.get(url, timeout=60)
                 if isinstance(r.json(), dict):
                     jarvis.say("Country not found.")
                 else:
@@ -69,7 +69,7 @@ class country_info:
         """
         while True:
             url = "http://api.worldbank.org/v2/country/%s?format=json" % iso_code
-            r = requests.get(url)
+            r = requests.get(url, timeout=60)
             if isinstance(r.json(), dict):
                 jarvis.say("Country not found.")
             else:
