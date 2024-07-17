@@ -1,22 +1,22 @@
-from random import randint
 
 from colorama import Fore
 
 from plugin import alias, plugin
+import secrets
 
 
 # function for generating 4-digit number
 def gen_num():
-    a = randint(1, 9)
-    b = randint(0, 9)
-    c = randint(0, 9)
-    d = randint(0, 9)
+    a = secrets.SystemRandom().randint(1, 9)
+    b = secrets.SystemRandom().randint(0, 9)
+    c = secrets.SystemRandom().randint(0, 9)
+    d = secrets.SystemRandom().randint(0, 9)
     while b == a:
-        b = randint(0, 9)
+        b = secrets.SystemRandom().randint(0, 9)
     while c == b or c == a:
-        c = randint(0, 9)
+        c = secrets.SystemRandom().randint(0, 9)
     while d == a or d == b or d == c:
-        d = randint(0, 9)
+        d = secrets.SystemRandom().randint(0, 9)
     return a, b, c, d
 
 

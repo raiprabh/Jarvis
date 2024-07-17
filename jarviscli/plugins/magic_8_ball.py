@@ -1,5 +1,5 @@
-import random
 from plugin import plugin, alias
+import secrets
 
 ball_top = """       _.a$$$$$a._
       ,$$$$$$$$$$$$$.
@@ -65,11 +65,11 @@ class Magic8Ball:
     def magic8ball_response(self, question):
         # Checks if user inputs 'quit' as an answer to continue using the program to ask another question.
         if question.casefold() == "quit":
-            print("\n", "+=== ", random.choice(exitList), " ===+")
+            print("\n", "+=== ", secrets.choice(exitList), " ===+")
 
         # Checks for blank user inputs and responds to try again
         elif question == "":
-            print("\n", BColors.FAIL, "+=== ", random.choice(emptyList), " ===+", "\n", BColors.ENDC)
+            print("\n", BColors.FAIL, "+=== ", secrets.choice(emptyList), " ===+", "\n", BColors.ENDC)
 
             print(f"{BColors.GREEN} +=== What is thy inquiry, great end-user? "
                   f"Or enter 'quit' if you wish to remain blind to the truth. ===+\n{BColors.ENDC}")
@@ -79,7 +79,7 @@ class Magic8Ball:
 
         # Displays response from list and asks user if they want to ask more questions, otherwise ends
         else:
-            response = random.choice(responseList)
+            response = secrets.choice(responseList)
 
             print(BColors.BLUE, "\n", ball_top, BColors.ENDC)
             print(BColors.GREEN, response.center(26, " "), BColors.ENDC)
@@ -91,4 +91,4 @@ class Magic8Ball:
             if question_2.casefold() == "yes":
                 return self.magic8ball_question(self.s, self.jarvis)
             else:
-                print(BColors.GREEN, "\n", "+=== ", random.choice(exitList), " ===+", BColors.ENDC)
+                print(BColors.GREEN, "\n", "+=== ", secrets.choice(exitList), " ===+", BColors.ENDC)

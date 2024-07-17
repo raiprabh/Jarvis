@@ -1,7 +1,7 @@
 from plugin import plugin
 import time
-import random
 import sys
+import secrets
 
 
 @plugin('memory')
@@ -76,7 +76,7 @@ class Memory:
         new = ""
         i = 0
         while (i <= len(number)):
-            digit = str(random.randint(0, 9))
+            digit = str(secrets.SystemRandom().randint(0, 9))
             new = new + digit
             i = i + 1
         return new

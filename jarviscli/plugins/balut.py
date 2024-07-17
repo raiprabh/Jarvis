@@ -1,9 +1,9 @@
-import random
 import textwrap
 import itertools
 import functools
 from plugin import plugin
 from typing import Callable, List
+import secrets
 
 
 ScoreCalculator = Callable[[List[int]], int]
@@ -370,7 +370,7 @@ class Balut:
         print()
 
     def roll_dice(self, dice_to_roll: int) -> None:
-        self._hand[dice_to_roll - 1] = random.randint(1, 6)
+        self._hand[dice_to_roll - 1] = secrets.SystemRandom().randint(1, 6)
 
     def roll_all_dices(self) -> None:
         for dice, _ in enumerate(self._hand, start=1):

@@ -1,5 +1,5 @@
-import random
 from plugin import plugin
+import secrets
 
 ANSWERS = [
   "No",
@@ -33,7 +33,7 @@ def advice(jarvis, s):
             print("Questions should end with a question mark: ?")
 
     while True:
-        random_idx = random.randint(0, len(ANSWERS))
+        random_idx = secrets.SystemRandom().randint(0, len(ANSWERS))
         print(ANSWERS[random_idx])
 
         while True:

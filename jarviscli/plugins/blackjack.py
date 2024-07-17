@@ -1,6 +1,6 @@
-import random
 from plugin import plugin
 from colorama import Fore
+import secrets
 
 
 def delay():  # method to pause after a series of actions have been completed.
@@ -71,8 +71,8 @@ def move(hand, suit, cards, suits,
     while True:
         choice = input("Press H to Hit, S to Stand, D to Double-Down, P to sPlit\n")
         if choice in ['H', 'h']:
-            newcard = random.choice(cards)
-            newsuit = random.choice(suits)
+            newcard = secrets.choice(cards)
+            newsuit = secrets.choice(suits)
             print("Newcard is", str(newcard) + " of " + newsuit)
             hand[0].append(newcard)
             suit[0].append(newsuit)
@@ -85,9 +85,9 @@ def move(hand, suit, cards, suits,
             return hand, suit, bet
 
         elif choice in ['D', 'd']:
-            newcard = random.choice(cards)
+            newcard = secrets.choice(cards)
             print("Newcard is", newcard)
-            newsuit = random.choice(suits)
+            newsuit = secrets.choice(suits)
             hand[0].append(newcard)
             suit[0].append(newsuit)
             print("Updated hand is", pprinthand(hand[0], suit[0]))
@@ -106,11 +106,11 @@ def move(hand, suit, cards, suits,
                     splitHand2 = [[0, 0]]
                     splitSuit1 = [[0, 0]]
                     splitSuit2 = [[0, 0]]
-                    newcard1 = random.choice(cards)
-                    newsuit1 = random.choice(suits)
+                    newcard1 = secrets.choice(cards)
+                    newsuit1 = secrets.choice(suits)
                     print("Newcard for first split is", str(newcard1) + " of " + newsuit1)
-                    newcard2 = random.choice(cards)
-                    newsuit2 = random.choice(suits)
+                    newcard2 = secrets.choice(cards)
+                    newsuit2 = secrets.choice(suits)
                     print("Newcard for second split is", str(newcard2) + " of " + newsuit2)
                     splitHand1[0][0] = hand[0][0]
                     splitHand2[0][0] = hand[0][1]
@@ -185,8 +185,8 @@ def blackjack(jarvis, s):
         # Cards
         jarvis.say("Dealing the cards............", Fore.BLUE)
         jarvis.say("Your cards....", Fore.BLUE)
-        hand = [random.choice(cards), random.choice(cards)]
-        suit = [random.choice(suits), random.choice(suits)]
+        hand = [secrets.choice(cards), secrets.choice(cards)]
+        suit = [secrets.choice(suits), secrets.choice(suits)]
         player["hands"].append(hand)
         player["suits"].append(suit)
         jarvis.say(pprinthand(hand, suit))
@@ -194,8 +194,8 @@ def blackjack(jarvis, s):
         jarvis.say('---------------------------')
 
         # Dealer's cards
-        dealerhand = [random.choice(cards), random.choice(cards)]
-        dealersuit = [random.choice(suits), random.choice(suits)]
+        dealerhand = [secrets.choice(cards), secrets.choice(cards)]
+        dealersuit = [secrets.choice(suits), secrets.choice(suits)]
         jarvis.say("Dealer hand: " + pprinthand(dealerhand, dealersuit, type='partially-visible'), Fore.MAGENTA)
         delay()
         jarvis.say('---------------------------')
@@ -216,8 +216,8 @@ def blackjack(jarvis, s):
         while dealersum < 17 or (
                 dealersum == 17 and 11 in dealerhand):  # condition which determines if dealer hits or not.
             jarvis.say("Dealer draws another card", Fore.MAGENTA)
-            dealerhand.append(random.choice(cards))
-            dealersuit.append(random.choice(suits))
+            dealerhand.append(secrets.choice(cards))
+            dealersuit.append(secrets.choice(suits))
             jarvis.say("Newcard is " + str(dealerhand[-1]) + " of " + str(dealersuit[-1]), Fore.MAGENTA)
             dealersum, dealerhand = blackjacksum(dealerhand)
             jarvis.say("Dealer's sum is " + str(dealersum), Fore.MAGENTA)
