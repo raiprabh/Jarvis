@@ -3,6 +3,7 @@ import subprocess
 from platform import system as sys
 from colorama import Fore
 from plugin import LINUX, plugin, require
+from security import safe_command
 
 
 @require(platform=LINUX)
@@ -105,16 +106,16 @@ class MacManagerLinux():
             return choice
 
     def change_mac(self, device, mac, jarvis):
-        down = subprocess.Popen([f"sudo ip link set {device} down"],
+        down = safe_command.run(subprocess.Popen, [f"sudo ip link set {device} down"],
                                 shell=True, universal_newlines=True,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         down.communicate()
-        change = subprocess.Popen([f"sudo ip link set {device} address {mac}"],
+        change = safe_command.run(subprocess.Popen, [f"sudo ip link set {device} address {mac}"],
                                   shell=True, universal_newlines=True,
                                   stdout=subprocess.PIPE,
                                   stderr=subprocess.STDOUT)
-        up = subprocess.Popen([f"sudo ip link set {device} up"],
+        up = safe_command.run(subprocess.Popen, [f"sudo ip link set {device} up"],
                               shell=True, universal_newlines=True,
                               stdout=subprocess.PIPE,
                               stderr=subprocess.STDOUT)
