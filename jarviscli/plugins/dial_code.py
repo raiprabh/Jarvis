@@ -32,11 +32,10 @@ class DialCode:
                                   + Fore.WHITE + ' (y/N): ')
 
             if choice in ['y', 'Y']:
-                # Open the file with dial codes
-                codes_file = open(os.path.join(FILE_PATH,
-                                               "../data/dial_codes.json"), 'r')
+                with open(os.path.join(FILE_PATH,
+                                               "../data/dial_codes.json"), 'r') as codes_file:
 
-                data = json.loads(codes_file.read())
+                    data = json.loads(codes_file.read())
 
                 all_countries = ''
                 for i in data:

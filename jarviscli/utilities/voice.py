@@ -6,9 +6,6 @@ from gtts import gTTS
 
 try:
     from pydub import AudioSegment, playback
-
-    # patch pydup - hide std output
-    FNULL = open(os.devnull, 'w')
     _subprocess_call = playback.subprocess.call
     playback.subprocess.call = lambda cmd: _subprocess_call(cmd, stdout=FNULL, stderr=subprocess.STDOUT)
 
