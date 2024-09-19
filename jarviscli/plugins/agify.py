@@ -1,6 +1,6 @@
-import requests
 from colorama import Fore
 from plugin import plugin, require
+from security import safe_requests
 
 
 @require(network=True)
@@ -9,7 +9,7 @@ def agify(jarvis, s):
     """Tells the age of someone based on his name, powered by www.boredapi.com"""
 
     if (s):
-        req = requests.get("https://api.agify.io?name=" + s)
+        req = safe_requests.get("https://api.agify.io?name=" + s)
         data = req.json()
         if data == "":
             jarvis.say("Sorry, an error occured", Fore.BLUE)

@@ -5,9 +5,9 @@ between the centroids of two supplied countries.
 
 from haversine import haversine
 from colorama import Fore
-import requests
 
 from plugin import plugin, require
+from security import safe_requests
 
 
 @require(network=True)
@@ -23,7 +23,7 @@ class Distances:
 
         def geocode(self):
             url = f'https://restcountries.com/v3.1/name/{self.country_name}'
-            payload = requests.get(url)
+            payload = safe_requests.get(url)
 
             if payload.status_code != 200:
                 self.coordinates = False

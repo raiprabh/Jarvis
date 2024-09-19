@@ -1,6 +1,6 @@
-import requests
 from colorama import Fore
 from plugin import plugin
+from security import safe_requests
 
 
 # List of default crypto pairs
@@ -51,7 +51,7 @@ def check_prices(base, target):
     }
 
     try:
-        response = requests.get(
+        response = safe_requests.get(
             url, headers={
                 'User-Agent': 'Jarvis'}, params=params).json()
 

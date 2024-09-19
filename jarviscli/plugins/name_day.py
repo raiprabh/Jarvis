@@ -2,6 +2,7 @@ from colorama import Fore
 from plugin import plugin, require
 import requests
 import re
+from security import safe_requests
 
 
 @require(network=True)
@@ -115,7 +116,7 @@ class NameDay:
         Show the name days for today.
         """
         country_code = self.get_country_code()
-        j = requests.get("https://nameday.abalin.net/api/V1/today",
+        j = safe_requests.get("https://nameday.abalin.net/api/V1/today",
                          params={"country": country_code}).json()
         names = j["nameday"][country_code]
         if names != "n/a":
@@ -128,7 +129,7 @@ class NameDay:
         Show the name days for tomorrow.
         """
         country_code = self.get_country_code()
-        j = requests.get("https://nameday.abalin.net/api/V1/tomorrow",
+        j = safe_requests.get("https://nameday.abalin.net/api/V1/tomorrow",
                          params={"country": country_code}).json()
         names = j["nameday"][country_code]
         if names != "n/a":
@@ -148,7 +149,7 @@ class NameDay:
         except ValueError:
             self.specific_date()
             return
-        j = requests.get("https://nameday.abalin.net/api/V1/getdate",
+        j = safe_requests.get("https://nameday.abalin.net/api/V1/getdate",
                          params={"country": country_code, "day": day, "month": month}).json()
         names = j["nameday"][country_code]
         if names != "n/a":
@@ -163,7 +164,7 @@ class NameDay:
         country_code = self.get_country_code()
         self.jarvis.say("Please enter name")
         name = self.jarvis.input().strip()
-        j = requests.get("https://nameday.abalin.net/api/V1/getname",
+        j = safe_requests.get("https://nameday.abalin.net/api/V1/getname",
                          params={"country": country_code, "name": name}).json()
 
         # the same name may have multiple name days

@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 
 import json
 from plugin import plugin, require
+from security import safe_requests
 
 
 @require(network=True)
@@ -40,7 +41,7 @@ class Quote():
         """
 
         while True:
-            res = requests.get(f'https://www.brainyquote.com/search_results?x=0&y=0&q={keyword}')
+            res = safe_requests.get(f'https://www.brainyquote.com/search_results?x=0&y=0&q={keyword}')
             soup = BeautifulSoup(res.text, 'html.parser')
             quote_divs = soup.find_all('div', {'class': 'bqQt'})
 

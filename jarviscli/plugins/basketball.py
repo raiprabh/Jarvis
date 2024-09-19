@@ -1,8 +1,8 @@
-import requests
 import datetime
 from plugin import plugin, require
 from colorama import Fore
 from packages.memory.memory import Memory
+from security import safe_requests
 
 URL = "https://api-basketball.p.rapidapi.com/"
 
@@ -29,7 +29,7 @@ class basketball():
         return {"x-rapidapi-host": "api-basketball.p.rapidapi.com", "x-rapidapi-key": self.key}
 
     def fetch_data(self, route):
-        r = requests.get(URL + route, headers=self.get_headers())
+        r = safe_requests.get(URL + route, headers=self.get_headers())
         r = r.json()
         if "errorCode" in r.keys():
             return None

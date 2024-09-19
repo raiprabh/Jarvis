@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
-import requests
 
 from colorama import Fore
 
 from utilities.dateTime import WeekDay
 from . import mapps
+from security import safe_requests
 
 
 def main(jarvis, s):
@@ -41,7 +41,7 @@ def main(jarvis, s):
             location, '7', units['url_units'])
     )
 
-    r = requests.get(send_url)
+    r = safe_requests.get(send_url)
     j = json.loads(r.text)
 
     week_from_today = WeekDay().get_week_from_today()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import requests
 import bs4
 from plugin import plugin, require
+from security import safe_requests
 
 # TODO: handle errors and instructions better
 
@@ -73,7 +73,7 @@ def get_lyric(singer, song):
     singer = singer.replace(' ', '_')
     song = song.replace(' ', '_')
     url = 'http://lyrics.wikia.com/{0}:{1}'.format(singer, song)
-    req = requests.get(url)
+    req = safe_requests.get(url)
     s = bs4.BeautifulSoup(req.text, "lxml")
     # Get main lyrics holder
     lyrics = s.find("div", {'class': 'lyricbox'})

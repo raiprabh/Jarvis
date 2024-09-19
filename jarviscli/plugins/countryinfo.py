@@ -1,5 +1,5 @@
 from plugin import plugin, require
-import requests
+from security import safe_requests
 
 
 @require(network=True)
@@ -35,7 +35,7 @@ class country_info:
                 return
             else:
                 url = "https://restcountries.com/v3.1/name/" + country
-                r = requests.get(url)
+                r = safe_requests.get(url)
                 if isinstance(r.json(), dict):
                     jarvis.say("Country not found.")
                 else:
@@ -69,7 +69,7 @@ class country_info:
         """
         while True:
             url = "http://api.worldbank.org/v2/country/%s?format=json" % iso_code
-            r = requests.get(url)
+            r = safe_requests.get(url)
             if isinstance(r.json(), dict):
                 jarvis.say("Country not found.")
             else:

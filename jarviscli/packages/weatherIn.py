@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
-import requests
 from . import mapps
 from packages import weather_pinpoint as pinpoint
 from packages.memory.memory import Memory
 from colorama import Fore
+from security import safe_requests
 
 
 def main(self, s):
@@ -36,7 +36,7 @@ def main(self, s):
             "&APPID=ab6ec687d641ced80cc0c935f9dd8ac9&units=metric".format(loc)
         )
         unit = ' ºC in '
-    r = requests.get(send_url)
+    r = safe_requests.get(send_url)
     j = json.loads(r.text)
 
     if 'message' in list(

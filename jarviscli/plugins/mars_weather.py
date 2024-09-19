@@ -1,7 +1,7 @@
-import requests
 from colorama import Fore
 from plugin import plugin, require
 import datetime
+from security import safe_requests
 
 API_KEY = 'OsZ9DfFtdgR6zPlVjxFTch1Np5zAcqt9g9i34ga2'
 headers = {'X-Auth-Token': API_KEY}
@@ -41,7 +41,7 @@ def mars_weather(jarvis, s):
 
 
 def fetch():
-    r = requests.get(url, headers=headers)
+    r = safe_requests.get(url, headers=headers)
     r = r.json()
     if "errorCode" in r.keys():
         return None

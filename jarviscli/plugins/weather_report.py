@@ -1,6 +1,6 @@
-import requests
 from plugin import plugin, alias, require
 from colorama import Fore
+from security import safe_requests
 
 
 @require(network=True)
@@ -18,7 +18,7 @@ class WeatherReport:
         jarvis.say("(Only type the city name, not country/province/state.)")
         loc = jarvis.input("Enter city name: ")
         loc = loc.lower()
-        x = requests.get('https://weatherdbi.herokuapp.com/data/weather/' + loc)
+        x = safe_requests.get('https://weatherdbi.herokuapp.com/data/weather/' + loc)
         y = x.json()
         if 'status' in y and y['status'] == 'fail':
             jarvis.say("Invalid location entered!", color=Fore.RED)

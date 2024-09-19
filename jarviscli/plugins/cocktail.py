@@ -1,8 +1,8 @@
 from colorama import Fore
 from plugin import plugin, require, alias
-import requests
 import json
 import os
+from security import safe_requests
 
 
 @require(network=True)
@@ -92,7 +92,7 @@ class Cocktail:
         Return data from given url in json format
         """
         try:
-            request = requests.get(URL)
+            request = safe_requests.get(URL)
         except Exception:
             self.jarvis.say(
                 "Can not reach URL for the moment.")

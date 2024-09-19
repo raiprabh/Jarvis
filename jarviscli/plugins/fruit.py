@@ -1,6 +1,7 @@
 from plugin import plugin
 from plugin import complete
 import requests
+from security import safe_requests
 
 
 @complete("fruit")
@@ -31,7 +32,7 @@ def fruit(jarvis, s: str) -> None:
         s = s.strip().lower()
 
         # Query the API for the requested fruit
-        response = requests.get(API_URL_SINGLE_FRUIT + s)
+        response = safe_requests.get(API_URL_SINGLE_FRUIT + s)
 
         # Handle invalid or nonexistent fruit names
         if response.status_code == 404:

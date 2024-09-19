@@ -1,6 +1,7 @@
 from tests import PluginTest
 from plugins.name_day import NameDay
 import requests
+from security import safe_requests
 
 
 class TestNameDay(PluginTest):
@@ -56,7 +57,7 @@ class TestNameDay(PluginTest):
 
     def test_today(self):
         self.plugin.today()
-        request = requests.get("https://nameday.abalin.net/api/V1/today", params={"country": "gr"})
+        request = safe_requests.get("https://nameday.abalin.net/api/V1/today", params={"country": "gr"})
         request_body = request.json()["nameday"]["gr"]
         if request_body != "n/a":
             self.assertEqual(self.history_say().last_text(), "Say some kind words to " + request_body)
@@ -66,7 +67,7 @@ class TestNameDay(PluginTest):
 
     def test_tomorrow(self):
         self.plugin.tomorrow()
-        request = requests.get("https://nameday.abalin.net/api/V1/tomorrow", params={"country": "gr"})
+        request = safe_requests.get("https://nameday.abalin.net/api/V1/tomorrow", params={"country": "gr"})
         request_body = request.json()["nameday"]["gr"]
         if request_body != "n/a":
             self.assertEqual(self.history_say().last_text(), "Say some kind words to " + request_body)
@@ -79,7 +80,7 @@ class TestNameDay(PluginTest):
         month = 11
         self.queue_input(str(day) + "/" + str(month))
         self.plugin.specific_date()
-        request = requests.get("https://nameday.abalin.net/api/V1/getdate", params={"day": day, "month": month})
+        request = safe_requests.get("https://nameday.abalin.net/api/V1/getdate", params={"day": day, "month": month})
         request_body = request.json()["nameday"]["gr"]
         if request_body != "n/a":
             self.assertEqual(self.history_say().last_text(), "Say some kind words to "

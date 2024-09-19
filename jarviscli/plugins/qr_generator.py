@@ -4,6 +4,7 @@ from colorama import Fore
 import requests
 import os
 import re
+from security import safe_requests
 
 
 @require(network=True)
@@ -77,7 +78,7 @@ class QRGenerator:
                 if response == "end":
                     break
                 # tries to get website from URL 
-                website = requests.get(response)
+                website = safe_requests.get(response)
                 break
             # list of possible exceptions from URLs with invalid form
             except requests.exceptions.MissingSchema:
@@ -124,7 +125,7 @@ class QRGenerator:
         try:
             # send request
             jarvis.spinner_start('Creating QR ')
-            response = requests.get(query)
+            response = safe_requests.get(query)
             # where the png file will be stored
             location = os.path.join(self.path,self.filename + '.png')
             file = open(location, "wb")

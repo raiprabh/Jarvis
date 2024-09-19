@@ -1,10 +1,9 @@
 import unittest
 from tests import PluginTest
 from plugins.imgcompressor import ImageCompressor
-
-import requests
 import os
 import shutil
+from security import safe_requests
 
 """Instructions to run this test.
 
@@ -40,7 +39,7 @@ class ImgCompressorTest(PluginTest):
 
         os.mkdir(self.image_folder)
 
-        image1 = requests.get('http://i.imgur.com/xZ8x9ES.jpg', stream=True)
+        image1 = safe_requests.get('http://i.imgur.com/xZ8x9ES.jpg', stream=True)
         if image1.status_code == 200:
             with open(os.path.join(self.image_folder, self.image1), 'wb') as f:
                 shutil.copyfileobj(image1.raw, f)
@@ -49,7 +48,7 @@ class ImgCompressorTest(PluginTest):
             print('Image Couldn\'t be retrieved')
             self.fail('Image Couldn\'t be retrieved')
 
-        image2 = requests.get('https://i.imgur.com/UYrdDFI.jpg', stream=True)
+        image2 = safe_requests.get('https://i.imgur.com/UYrdDFI.jpg', stream=True)
         if image2.status_code == 200:
             with open(os.path.join(self.image_folder, self.image2), 'wb') as f:
                 shutil.copyfileobj(image2.raw, f)

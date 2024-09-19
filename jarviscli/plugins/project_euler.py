@@ -1,10 +1,10 @@
 import random
 
 import bs4
-import requests
 from colorama import Fore
 
 from plugin import alias, plugin, require
+from security import safe_requests
 
 
 @alias('project euler')
@@ -56,7 +56,7 @@ class Euler():
         # Form link depending on the task number and get the page via requests module
         url = self.project_url + '/problem=' + str(number)
         try:
-            page = requests.get(url)
+            page = safe_requests.get(url)
         except ConnectionError:
             self.jarvis.say("Can't get info from site, exit", Fore.RED)
             return
@@ -127,7 +127,7 @@ class Euler():
         # (in order to set limits on user's input)
         # Use bs4 to parse the page with recent problems
         url = self.project_url + '/recent'
-        page = requests.get(url)
+        page = safe_requests.get(url)
         soup = bs4.BeautifulSoup(page.content, 'html.parser')
 
         # We need only the table with recent problems

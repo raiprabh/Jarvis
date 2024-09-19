@@ -1,5 +1,5 @@
-import requests
 from plugin import plugin, require
+from security import safe_requests
 
 """
 Gives you ideas to do when you are bored from https://www.boredapi.com/
@@ -15,7 +15,7 @@ class bored_api:
     def __call__(self, jarvis, s):
         api_url = 'https://www.boredapi.com/api/activity/'
         header = {'Accept': 'application/json'}
-        r = requests.get(api_url, headers=header)
+        r = safe_requests.get(api_url, headers=header)
 
         query = r.json()
 

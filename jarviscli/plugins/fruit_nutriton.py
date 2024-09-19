@@ -1,6 +1,6 @@
 from plugin import plugin
 from plugin import require,alias,complete
-import requests
+from security import safe_requests
 
 @require(network=True)
 @alias("info on fruits")
@@ -21,7 +21,7 @@ def nutrition_fruit(jarvis,s):
         fruit = fruit.lower()
         print("Loading fruit information...")
         # get info of the specific fruit using the API
-        getinfo = requests.get(API_FRUIT_URL + fruit)
+        getinfo = safe_requests.get(API_FRUIT_URL + fruit)
         if getinfo.status_code == 404:
             jarvis.say("Please enter a valid fruit name!.")
             break
@@ -57,7 +57,7 @@ def compare_fruit(jarvis, original_fruit):
 
     API_FRUIT_URL = "https://fruityvice.com/api/fruit/"
     fruit2 = jarvis.input("Enter the second fruit for comparison: ").strip().lower()
-    response = requests.get(API_FRUIT_URL + fruit2)
+    response = safe_requests.get(API_FRUIT_URL + fruit2)
     if response.status_code == 404:
         jarvis.say("Invalid fruit name. Please enter a valid fruit name for comparison.")
     else:
