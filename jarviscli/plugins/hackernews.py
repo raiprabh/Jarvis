@@ -59,7 +59,7 @@ class HackerNews:
         titles = []
 
         try:
-            response = requests.get(self.URL)
+            response = requests.get(self.URL, timeout=60)
             response.raise_for_status()
         except (
             requests.exceptions.ConnectionError,

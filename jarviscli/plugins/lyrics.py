@@ -73,7 +73,7 @@ def get_lyric(singer, song):
     singer = singer.replace(' ', '_')
     song = song.replace(' ', '_')
     url = 'http://lyrics.wikia.com/{0}:{1}'.format(singer, song)
-    req = requests.get(url)
+    req = requests.get(url, timeout=60)
     s = bs4.BeautifulSoup(req.text, "lxml")
     # Get main lyrics holder
     lyrics = s.find("div", {'class': 'lyricbox'})

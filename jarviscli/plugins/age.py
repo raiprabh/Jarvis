@@ -6,7 +6,7 @@ import re
 def fetch(name):
     
     url = 'https://api.agify.io?name='
-    r = requests.get(url + name)
+    r = requests.get(url + name, timeout=60)
     r = r.json()
     if "errorCode" in r.keys():
         return None

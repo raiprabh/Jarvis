@@ -221,7 +221,7 @@ class News:
 
     def _get(self, jarvis, url):
         """fetch a webpage"""
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         if response.status_code == requests.codes.ok:
             data = json.loads(response.text)
             return data

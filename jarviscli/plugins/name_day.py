@@ -99,7 +99,7 @@ class NameDay:
         """
         self.jarvis.say("Getting Location ... ")
         send_url = 'http://api.ipstack.com/check?access_key=f16ebe59174140a634827d674e605350&output=json&legacy=1'
-        js = requests.get(send_url).json()
+        js = requests.get(send_url, timeout=60).json()
         loc = js["country_name"]
 
         if loc in self.countries.keys():
@@ -116,7 +116,7 @@ class NameDay:
         """
         country_code = self.get_country_code()
         j = requests.get("https://nameday.abalin.net/api/V1/today",
-                         params={"country": country_code}).json()
+                         params={"country": country_code}, timeout=60).json()
         names = j["nameday"][country_code]
         if names != "n/a":
             self.jarvis.say("Say some kind words to " + names)
@@ -129,7 +129,7 @@ class NameDay:
         """
         country_code = self.get_country_code()
         j = requests.get("https://nameday.abalin.net/api/V1/tomorrow",
-                         params={"country": country_code}).json()
+                         params={"country": country_code}, timeout=60).json()
         names = j["nameday"][country_code]
         if names != "n/a":
             self.jarvis.say("Say some kind words to " + names)
@@ -149,7 +149,7 @@ class NameDay:
             self.specific_date()
             return
         j = requests.get("https://nameday.abalin.net/api/V1/getdate",
-                         params={"country": country_code, "day": day, "month": month}).json()
+                         params={"country": country_code, "day": day, "month": month}, timeout=60).json()
         names = j["nameday"][country_code]
         if names != "n/a":
             self.jarvis.say("Say some kind words to " + names + " on " + day + "/" + month)
@@ -164,7 +164,7 @@ class NameDay:
         self.jarvis.say("Please enter name")
         name = self.jarvis.input().strip()
         j = requests.get("https://nameday.abalin.net/api/V1/getname",
-                         params={"country": country_code, "name": name}).json()
+                         params={"country": country_code, "name": name}, timeout=60).json()
 
         # the same name may have multiple name days
         if j["0"]:

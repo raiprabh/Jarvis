@@ -8,7 +8,7 @@ from plugin import alias, plugin, require
 @plugin('joke chuck')
 def chuck(jarvis, s):
     """Tell a joke about Chuck Norris"""
-    req = requests.get("https://api.chucknorris.io/jokes/random")
+    req = requests.get("https://api.chucknorris.io/jokes/random", timeout=60)
     chuck_json = req.json()
 
     chuck_fact = chuck_json["value"]

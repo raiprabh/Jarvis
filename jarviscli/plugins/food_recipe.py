@@ -64,7 +64,7 @@ def getChoices(jarvis, s):
 def getAllRecipes(apiKey, cuisine):
     url = f"https://api.spoonacular.com/recipes/complexSearch?apiKey={apiKey}&cuisine={cuisine}&includeNutrition=true."
 
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
     # print(response)
 
     if response.status_code == 200:
@@ -107,7 +107,7 @@ def getAllRecipes(apiKey, cuisine):
 
         # now get the recipe info from the id
         url2 = f"https://api.spoonacular.com/recipes/{selectedId}/information?apiKey={apiKey}&includeNutrition=false"
-        responseRecipeInformation = requests.get(url2)
+        responseRecipeInformation = requests.get(url2, timeout=60)
 
         if responseRecipeInformation.status_code == 200:
 

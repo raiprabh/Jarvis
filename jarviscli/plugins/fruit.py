@@ -31,7 +31,7 @@ def fruit(jarvis, s: str) -> None:
         s = s.strip().lower()
 
         # Query the API for the requested fruit
-        response = requests.get(API_URL_SINGLE_FRUIT + s)
+        response = requests.get(API_URL_SINGLE_FRUIT + s, timeout=60)
 
         # Handle invalid or nonexistent fruit names
         if response.status_code == 404:

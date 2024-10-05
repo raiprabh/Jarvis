@@ -15,7 +15,7 @@ class ProtonCompatibleGame:
     def getAppIdFromTitle(self,jarvis):
         jarvis.say("Warning: This option may not find the game or find an incorrect game. Find the game's AppId from Steam for accurate results!",color=Fore.RED)
         title=jarvis.input("Enter Game Title: ",color=Fore.GREEN).strip();
-        games = requests.get("https://protondb.max-p.me/games").text
+        games = requests.get("https://protondb.max-p.me/games", timeout=60).text
         games = json.loads(games) 
         for game in games:
             if (game["title"]==title):
@@ -26,7 +26,7 @@ class ProtonCompatibleGame:
         try:
             jarvis.say("Game appId: "+str(appid),Fore.YELLOW)
             url="https://www.protondb.com/api/v1/reports/summaries/"+str(appid)+".json"
-            rating=requests.get(url).json()
+            rating=requests.get(url, timeout=60).json()
             jarvis.say("ProtonDB Rating: "+rating["tier"],Fore.YELLOW)
         except:
             jarvis.say("Invalid AppId or there are no ratings for this game",color=Fore.RED)

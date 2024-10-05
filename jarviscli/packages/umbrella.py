@@ -9,7 +9,7 @@ def main(city=0):
         "http://api.openweathermap.org/data/2.5/forecast/daily?q={0}&cnt=1"
         "&APPID=ab6ec687d641ced80cc0c935f9dd8ac9&units=metric".format(city)
     )
-    r = requests.get(send_url)
+    r = requests.get(send_url, timeout=60)
     j = json.loads(r.text)
     rain = j['list'][0]['weather'][0]['id']
     if rain >= 300 and rain <= 500:  # In case of drizzle or light rain

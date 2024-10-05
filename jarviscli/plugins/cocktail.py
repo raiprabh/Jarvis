@@ -92,7 +92,7 @@ class Cocktail:
         Return data from given url in json format
         """
         try:
-            request = requests.get(URL)
+            request = requests.get(URL, timeout=60)
         except Exception:
             self.jarvis.say(
                 "Can not reach URL for the moment.")

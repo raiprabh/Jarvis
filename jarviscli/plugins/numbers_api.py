@@ -32,7 +32,7 @@ def numbersapi(jarvis, s):
 def get_data(jarvis, number):
     base_url = "http://numbersapi.com/"
     try:
-        response = requests.get(f"{base_url}{number}")
+        response = requests.get(f"{base_url}{number}", timeout=60)
         return response.text
     except requests.exceptions.RequestException:
         jarvis.say(f"\tCould not get data from {base_url}", Fore.RED)
