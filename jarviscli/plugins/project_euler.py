@@ -1,10 +1,10 @@
-import random
 
 import bs4
 import requests
 from colorama import Fore
 
 from plugin import alias, plugin, require
+import secrets
 
 
 @alias('project euler')
@@ -46,7 +46,7 @@ class Euler():
             self.get_problem_by_number(problem_number)
         elif choice == 2:
             # Generate random number
-            problem_number = random.randint(1, self.last_problem_id)
+            problem_number = secrets.SystemRandom().randint(1, self.last_problem_id)
             self.get_problem_by_number(problem_number)
         elif choice == 3:
             self.show_info()

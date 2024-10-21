@@ -1,8 +1,8 @@
-import random
 
 from colorama import Fore
 
 from plugin import plugin
+import secrets
 
 reds = [1, 3, 5, 7, 9, 12, 14, 16, 18,
         19, 21, 23, 25, 27, 30, 32, 34, 36]
@@ -78,7 +78,7 @@ def first_choice(jarvis, cash):
     bet = bet_amount(jarvis, cash)
     jarvis.say("Your bet: $" + str(bet), Fore.RED)
     n = input("Press enter to spin roulette")
-    result = random.randint(0, 36)
+    result = secrets.SystemRandom().randint(0, 36)
     cash -= bet
 
     print("")
@@ -112,7 +112,7 @@ def second_choice(jarvis, cash):
     print("")
 
     n = input("Press enter to spin roulette")
-    result = random.randint(0, 36)
+    result = secrets.SystemRandom().randint(0, 36)
     cash -= bet
 
     print("")
@@ -150,7 +150,7 @@ def third_choice(jarvis, cash):
     print("")
 
     n = input("Press enter to spin roulette")
-    result = random.randint(0, 36)
+    result = secrets.SystemRandom().randint(0, 36)
     cash -= bet
 
     print("")
@@ -187,7 +187,7 @@ def fourth_choice(jarvis, cash):
     print("")
 
     n = input("Press enter to spin roulette")
-    result = random.randint(0, 36)
+    result = secrets.SystemRandom().randint(0, 36)
     cash -= bet
 
     print("")
@@ -234,7 +234,7 @@ def fifth_choice(jarvis, cash):
     print("")
 
     n = input("Press enter to spin roulette")
-    result = random.randint(0, 36)
+    result = secrets.SystemRandom().randint(0, 36)
     cash -= bet
 
     print("")

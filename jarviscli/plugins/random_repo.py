@@ -1,8 +1,9 @@
 # All plugins should inherite from this library
 from github3 import login,GitHub, exceptions
 from colorama import Fore
-from random import randint
 from plugin import alias, plugin, require
+import secrets
+
 # This is the standard form of a plugin for jarvis
 
 # Anytime you make a change REMEMBER TO RESTART Jarvis
@@ -19,7 +20,7 @@ class RandomProjectPicker:
                repos.append(repo)
            n=len(repos)
            jarvis.say("Number of repo: "+str(n),Fore.YELLOW)
-           chosen_repo=repos[randint(0,n-1)];
+           chosen_repo=repos[secrets.SystemRandom().randint(0,n-1)];
            jarvis.say("The Chosen repo is: "+chosen_repo.name,Fore.YELLOW)
         except(exceptions.NotFoundError):
             jarvis.say("User Not Found!",Fore.RED)

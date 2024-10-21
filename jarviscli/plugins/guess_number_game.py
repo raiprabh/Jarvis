@@ -1,6 +1,6 @@
 from plugin import plugin
-import random
 from colorama import Fore
+import secrets
 
 
 @plugin("guess_number_game")
@@ -11,7 +11,7 @@ def helloworld(jarvis, s):
     jarvis.say("is bigger or smaller than the one i am thinking.", Fore.BLUE)
     jarvis.say("Let's start the game!", Fore.BLUE)
 
-    num = random.randint(1, 100)
+    num = secrets.SystemRandom().randint(1, 100)
     output = ""
     ##jarvis.say("number is--->", str(num), Fore.BLUE)
     jarvis.say("To Exit the game type exit.", Fore.BLUE)

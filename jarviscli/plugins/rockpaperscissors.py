@@ -1,8 +1,8 @@
-import random
 
 from colorama import Back
 
 from plugin import plugin
+import secrets
 
 
 @plugin('rockpaperscissors')
@@ -147,7 +147,7 @@ class rockpaperscissors():
 
         moves = ["r", "p", "s"]
 
-        return moves[random.randint(0, 2)]
+        return moves[secrets.SystemRandom().randint(0, 2)]
 
     def game(self, umove, jmove):
 

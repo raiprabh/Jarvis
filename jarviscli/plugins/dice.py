@@ -1,8 +1,8 @@
 from colorama import Fore
 import re
-import random
 from utilities.textParser import parse_number
 from plugin import plugin
+import secrets
 
 
 @plugin('roll')
@@ -91,4 +91,4 @@ class Roll():
 
     def _dice_roll(self, config):
         for _ in range(config["repeat"]):
-            yield [str(random.randint(1, config["edges"])) for _ in range(config["howmany"])]
+            yield [str(secrets.SystemRandom().randint(1, config["edges"])) for _ in range(config["howmany"])]

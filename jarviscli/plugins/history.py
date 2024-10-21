@@ -1,10 +1,10 @@
 import datetime
-import random
 
 import requests
 from colorama import Fore
 
 from plugin import plugin, require
+import secrets
 
 
 @require(network=True)
@@ -155,7 +155,7 @@ class history:
         # check for events
         api_cfg[self.KW.EVENT] = config[self.KW.EVENT]
         if not api_cfg[self.KW.EVENT]:
-            api_cfg[self.KW.EVENT] = random.choice(self.events)
+            api_cfg[self.KW.EVENT] = secrets.choice(self.events)
 
         # track if we got date from keywords
         api_cfg[self.KW.KEYWORD] = False
@@ -179,12 +179,12 @@ class history:
             # check for month
             api_cfg[self.KW.MONTH] = config[self.KW.MONTH]
             if not api_cfg[self.KW.MONTH]:
-                api_cfg[self.KW.MONTH] = random.choice(self.months)
+                api_cfg[self.KW.MONTH] = secrets.choice(self.months)
 
             # check for day
             api_cfg[self.KW.DAY] = config[self.KW.DAY]
             if not api_cfg[self.KW.DAY]:
-                api_cfg[self.KW.DAY] = random.randint(1, 29)
+                api_cfg[self.KW.DAY] = secrets.SystemRandom().randint(1, 29)
 
         return api_cfg
 
@@ -214,7 +214,7 @@ class history:
             result = response.json()
             # randomly et one of the facts
             facts_arr = result['data'][api_cfg[self.KW.EVENT].capitalize()]
-            fact = random.choice(facts_arr)
+            fact = secrets.choice(facts_arr)
             # generate data from result
             data = {
                 'date': result['date'],

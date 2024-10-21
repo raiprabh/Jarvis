@@ -1,7 +1,7 @@
 import unittest
 from plugins import dice
 from tests import PluginTest
-import random
+import secrets
 
 
 class RollTest(PluginTest):
@@ -38,9 +38,9 @@ class RollTest(PluginTest):
         # test repeats
         for _ in range(5):
             # random config
-            edges = random.randint(2, 10)
-            repeat = random.randint(1, 10)
-            howmany = random.randint(1, 10)
+            edges = secrets.SystemRandom().randint(2, 10)
+            repeat = secrets.SystemRandom().randint(1, 10)
+            howmany = secrets.SystemRandom().randint(1, 10)
 
             config = {"repeat": repeat, "howmany": howmany, "edges": edges}
             result_check = [False] * edges
