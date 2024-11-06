@@ -1,6 +1,7 @@
 from plugin import LINUX, WINDOWS, plugin, require
 from colorama import Fore
 import subprocess
+from security import safe_command
 
 
 @require(platform=LINUX)
@@ -101,7 +102,7 @@ class WifiPasswordGetterLINUX:
             The name of the selected wifi.
         """
         path = "/etc/NetworkManager/system-connections/"
-        display = subprocess.Popen([f"sudo grep -r '^psk=' {path}{ssid}"],
+        display = safe_command.run(subprocess.Popen, [f"sudo grep -r '^psk=' {path}{ssid}"],
                                    shell=True, universal_newlines=True,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT)

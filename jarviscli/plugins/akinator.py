@@ -3,6 +3,7 @@ from colorama import Fore
 import akinator
 import subprocess
 import sys
+from security import safe_command
 
 
 """
@@ -82,7 +83,7 @@ def main_game(jarvis):
                                   'win32': 'explorer',
                                   'darwin': 'open'}[sys.platform]  # get an image Viewer
     try:
-        subprocess.run([imageViewerFromCommandLine, aki.picture])  # display image of answer
+        safe_command.run(subprocess.run, [imageViewerFromCommandLine, aki.picture])  # display image of answer
     except Exception:
         pass
     correct = jarvis.input(f"It's " + aki.first_guess.name +
