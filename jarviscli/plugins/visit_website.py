@@ -43,21 +43,20 @@ class OpenWebsite:
             jarvis.say("Sorry, I can't open this link.")
 
     def has_on_saved_links(self):
-        websites_csv = \
-            open(os.path.join(FILE_PATH, "../data/websites.csv"), 'r')
-        for website in websites_csv:
-            website = website.rstrip()  # remove newline
-            information = website.split(',')
-            if self.main_link == information[0]:
-                if self.complement:
-                    if len(information) > 2:
-                        self.main_link = \
+        with open(os.path.join(FILE_PATH, "../data/websites.csv"), 'r') as websites_csv:
+            for website in websites_csv:
+                website = website.rstrip()  # remove newline
+                information = website.split(',')
+                if self.main_link == information[0]:
+                    if self.complement:
+                        if len(information) > 2:
+                            self.main_link = \
                             information[1] + information[2] + self.complement
+                        else:
+                            self.main_link = information[1] + self.complement
                     else:
-                        self.main_link = information[1] + self.complement
-                else:
-                    self.main_link = information[1]
-                return True
+                        self.main_link = information[1]
+                    return True
 
         return False
 

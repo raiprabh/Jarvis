@@ -10,12 +10,8 @@ NUM_NEXT = 100
 @plugin("pi")
 def next_pi(jarvis, s):
     jarvis.say("Pi equals 3.14...", Fore.GREEN)
-    # today = datetime.date.today()
-
-    # print(today)
-
-    pi_file = open(os.path.join(FILE_PATH, '../data/pi.txt'), 'r')
-    pi_number = pi_file.read()
+    with open(os.path.join(FILE_PATH, '../data/pi.txt'), 'r') as pi_file:
+        pi_number = pi_file.read()
     index = 4
     while True:
         user_input = jarvis.input("Enter \'n\' to print next {} digits : ".format(str(NUM_NEXT)))
