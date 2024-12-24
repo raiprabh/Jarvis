@@ -5,6 +5,7 @@ import requests
 import webbrowser
 from colorama import Fore
 from plugin import plugin, require
+from security import safe_requests
 
 
 @require(network=True)
@@ -221,7 +222,7 @@ class News:
 
     def _get(self, jarvis, url):
         """fetch a webpage"""
-        response = requests.get(url)
+        response = safe_requests.get(url)
         if response.status_code == requests.codes.ok:
             data = json.loads(response.text)
             return data

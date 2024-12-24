@@ -1,11 +1,11 @@
 import time
 import sys
-import requests
 import json
 from plugin import plugin, require, UNIX
 import os
 import csv
 from colorama import Fore
+from security import safe_requests
 
 FILE_PATH = os.path.abspath(os.path.dirname(__file__))
 
@@ -83,7 +83,7 @@ class Letter():
 
 
 def get_text():
-    response = requests.get(f"https://random-word-api.vercel.app/api?words={n_words}")
+    response = safe_requests.get(f"https://random-word-api.vercel.app/api?words={n_words}")
     if response.status_code == 200:
         json_data = json.loads(response.content)
         json_data = ' '.join(json_data)

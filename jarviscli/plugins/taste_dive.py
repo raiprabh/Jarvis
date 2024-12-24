@@ -1,8 +1,8 @@
 
 from plugin import plugin,require
 from colorama import Fore
-import requests
 import textwrap
+from security import safe_requests
  
 
 @require(network=True)
@@ -124,7 +124,7 @@ class TasteDive:
         try:
             # send request
             jarvis.spinner_start('Searching suggestions ')
-            response = requests.get(query)
+            response = safe_requests.get(query)
             # parse into json
             result = response.json()
             # gets the value of "Similar"

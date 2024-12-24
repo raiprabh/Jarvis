@@ -6,6 +6,7 @@ from colorama import Fore
 import requests
 
 from plugin import plugin, alias, require
+from security import safe_requests
 
 
 class HackerNewsRequestException(Exception):
@@ -59,7 +60,7 @@ class HackerNews:
         titles = []
 
         try:
-            response = requests.get(self.URL)
+            response = safe_requests.get(self.URL)
             response.raise_for_status()
         except (
             requests.exceptions.ConnectionError,

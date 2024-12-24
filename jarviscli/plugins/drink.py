@@ -1,6 +1,6 @@
 from plugin import plugin
-import requests
 import json
+from security import safe_requests
 
 # simple plugin that gives preparation info about given cocktail
 # uses the API https://www.thecocktaildb.com with a total of 635 cocktails/drinks
@@ -10,7 +10,7 @@ import json
 def cocktail(jarvis, s):
     cocktail = input("Enter a drink: ").strip()
     url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + cocktail
-    r = requests.get(url)
+    r = safe_requests.get(url)
     json_data = json.loads(r.content)
     try:
         # collects the neccasary data from the JSON and saves in 

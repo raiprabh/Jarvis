@@ -1,6 +1,7 @@
 import requests
 from colorama import Fore
 from plugin import plugin, require
+from security import safe_requests
 
 
 @require(network=True)
@@ -32,7 +33,7 @@ def numbersapi(jarvis, s):
 def get_data(jarvis, number):
     base_url = "http://numbersapi.com/"
     try:
-        response = requests.get(f"{base_url}{number}")
+        response = safe_requests.get(f"{base_url}{number}")
         return response.text
     except requests.exceptions.RequestException:
         jarvis.say(f"\tCould not get data from {base_url}", Fore.RED)

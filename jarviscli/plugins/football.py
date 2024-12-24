@@ -1,8 +1,8 @@
-import requests
 from colorama import Fore
 
 from plugin import plugin, require
 from tabulate import tabulate
+from security import safe_requests
 
 API_KEY = '1ebd3b92bf5041249f8c1e7a540ce98c'
 url = 'https://api.football-data.org/v2'
@@ -10,7 +10,7 @@ headers = {'X-Auth-Token': API_KEY}
 
 
 def fetch(route):
-    r = requests.get(url + route, headers=headers)
+    r = safe_requests.get(url + route, headers=headers)
     r = r.json()
     if "errorCode" in r.keys():
         return None

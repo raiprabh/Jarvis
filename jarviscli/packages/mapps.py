@@ -3,6 +3,7 @@ import json
 import webbrowser
 import requests
 from colorama import Fore
+from security import safe_requests
 
 location = 0
 
@@ -53,7 +54,7 @@ def weather(city=None):
                 city)
         )
         unit = ' ºC in '
-    r = requests.get(send_url)
+    r = safe_requests.get(send_url)
     j = json.loads(r.text)
 
     # check if the city entered is not found

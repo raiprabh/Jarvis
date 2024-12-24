@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock, Mock, patch
 from tests import PluginTest
 from plugins.music_recognition import MusicRecognition
-import requests
+from security import safe_requests
 
 """Instructions to run this test.
 
@@ -32,7 +32,7 @@ class MusicRecognitionTest(PluginTest):
         excerpt of the Addams Family song
         """
 
-        song = requests.get(
+        song = safe_requests.get(
             'https://drive.google.com/uc?export=download&id=1LAM_dxzuGlrCehg4_wIf68Z_erNaMXGs',
             stream=True)
         if song.status_code == 200:

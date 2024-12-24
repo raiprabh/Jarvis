@@ -2,7 +2,6 @@
 import json
 import geopy
 import urllib.parse
-import requests
 import shutil
 import os
 from packages.mapps import get_location
@@ -10,6 +9,7 @@ from colorama import Fore
 
 # All plugins should inherite from this library
 from plugin import plugin
+from security import safe_requests
 
 DATA_PATH = os.path.abspath(os.path.dirname(__file__))
 DATA_PATH = DATA_PATH[:-8] + "/data"
@@ -42,7 +42,7 @@ def get_voter_info(jarvis, s, address):
     url += "&address=" + urllib.parse.quote(str(address))
     if s:
         url += "&electionId=" + s
-    result = requests.get(url)
+    result = safe_requests.get(url)
     voterInfo = result.json()
 
     # Return information to user

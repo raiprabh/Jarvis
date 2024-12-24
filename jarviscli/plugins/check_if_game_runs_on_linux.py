@@ -2,6 +2,8 @@
 import requests, json
 from colorama import Fore
 from plugin import alias, plugin, require
+from security import safe_requests
+
 # This is the standard form of a plugin for jarvis
 
 # Anytime you make a change REMEMBER TO RESTART Jarvis
@@ -26,7 +28,7 @@ class ProtonCompatibleGame:
         try:
             jarvis.say("Game appId: "+str(appid),Fore.YELLOW)
             url="https://www.protondb.com/api/v1/reports/summaries/"+str(appid)+".json"
-            rating=requests.get(url).json()
+            rating=safe_requests.get(url).json()
             jarvis.say("ProtonDB Rating: "+rating["tier"],Fore.YELLOW)
         except:
             jarvis.say("Invalid AppId or there are no ratings for this game",color=Fore.RED)

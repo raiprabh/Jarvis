@@ -1,5 +1,6 @@
 import requests
 from plugin import plugin
+from security import safe_requests
 
 BASE_URL = "https://www.fruityvice.com/api/fruit/"
 
@@ -14,7 +15,7 @@ def fruit_nutrition(jarvis, s):
         return
 
     try:
-        response = requests.get(BASE_URL + fruit_name)
+        response = safe_requests.get(BASE_URL + fruit_name)
         response.raise_for_status()  # raise HTTPError if status code is not 200
 
         data = response.json()

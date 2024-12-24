@@ -1,9 +1,9 @@
 import unittest
 from unittest import mock
-import requests
 from tests import PluginTest
 from plugins.cocktail import Cocktail
 import random
+from security import safe_requests
 
 
 class CocktailTest(PluginTest):
@@ -14,7 +14,7 @@ class CocktailTest(PluginTest):
     def test_available_cocktail_ingridients(self):
         available_ingridients = self.test.ingridients
         for i in available_ingridients:
-            response = requests.get(
+            response = safe_requests.get(
                 f"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i={i}")
             self.assertTrue(response.ok)
 
@@ -24,7 +24,7 @@ class CocktailTest(PluginTest):
         random_base_ingridient = random.randint(0,len(available_ingridients) - 1)
         cocktails = self.test.get_cocktails_by_ingridient(random_base_ingridient)
         for c in cocktails:
-            response = requests.get(
+            response = safe_requests.get(
                 f"https://www.thecocktaildb.com/api/json/v1/1/filter.php?i={c}")
             self.assertTrue(response.ok)
 
