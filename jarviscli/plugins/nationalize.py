@@ -7,7 +7,7 @@ from plugin import plugin, require
 @plugin("nationalize")
 def nationalize(jarvis, s):
     """Tells the nationality of someone based on his name, powered by www.boredapi.com"""
-    req = requests.get("https://api.nationalize.io?name=" + s)
+    req = requests.get("https://api.nationalize.io?name=" + s, timeout=60)
     data = req.json()
     if data == "":
         jarvis.say("Sorry, an error occured", Fore.BLUE)
@@ -18,7 +18,7 @@ def nationalize(jarvis, s):
     response = "There are "
     for nationality in data.get('country'):
         req = requests.get("https://restcountries.eu/rest/v2/alpha/" +
-                           nationality.get('country_id').lower())
+                           nationality.get('country_id').lower(), timeout=60)
         country = req.json()
         response += str(round(nationality.get('probability') * 100)) + \
             "% chances that you are from " + country.get("name") + ",\n"

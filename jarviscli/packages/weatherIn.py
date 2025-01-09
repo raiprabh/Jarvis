@@ -36,7 +36,7 @@ def main(self, s):
             "&APPID=ab6ec687d641ced80cc0c935f9dd8ac9&units=metric".format(loc)
         )
         unit = ' ºC in '
-    r = requests.get(send_url)
+    r = requests.get(send_url, timeout=60)
     j = json.loads(r.text)
 
     if 'message' in list(

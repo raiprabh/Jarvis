@@ -17,7 +17,7 @@ class Hackathon():
         self.format(self.get_hackathon_data(self.get_csrf_token()), jarvis)
 
     def get_csrf_token(self):
-        csrf_request = requests.get('https://www.hackerearth.com/challenges/')
+        csrf_request = requests.get('https://www.hackerearth.com/challenges/', timeout=60)
 
         # extract line with CSRF_COOKIE =
         csrf_token = [line for line in csrf_request.text.split(
@@ -40,7 +40,7 @@ class Hackathon():
             'https://www.hackerearth.com/AJAX/filter-challenges/',
             data='',
             headers=headers,
-            cookies=cookie)
+            cookies=cookie, timeout=60)
 
         return request.text
 

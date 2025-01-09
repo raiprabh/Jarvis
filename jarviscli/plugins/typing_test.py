@@ -83,7 +83,7 @@ class Letter():
 
 
 def get_text():
-    response = requests.get(f"https://random-word-api.vercel.app/api?words={n_words}")
+    response = requests.get(f"https://random-word-api.vercel.app/api?words={n_words}", timeout=60)
     if response.status_code == 200:
         json_data = json.loads(response.content)
         json_data = ' '.join(json_data)

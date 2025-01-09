@@ -78,7 +78,7 @@ class TwitterTrends:
         Return data from given url in json format
         """
         try:
-            response = requests.get(URL)
+            response = requests.get(URL, timeout=60)
         except:
             self.jarvis.say(
                 "Can not reach URL for the moment.")

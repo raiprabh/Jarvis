@@ -34,7 +34,7 @@ class MusicRecognitionTest(PluginTest):
 
         song = requests.get(
             'https://drive.google.com/uc?export=download&id=1LAM_dxzuGlrCehg4_wIf68Z_erNaMXGs',
-            stream=True)
+            stream=True, timeout=60)
         if song.status_code == 200:
             mock_object = Mock()
             mock_object.get_wav_data.return_value = song.content

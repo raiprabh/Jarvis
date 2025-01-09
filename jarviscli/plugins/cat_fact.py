@@ -8,7 +8,7 @@ from plugin import plugin, require
 def cat_fact(jarvis, s):
     """Tells a random cat fact"""
 
-    req = requests.get("https://catfact.ninja/fact")
+    req = requests.get("https://catfact.ninja/fact", timeout=60)
     data = req.json()
 
     cat_fact = data["fact"]

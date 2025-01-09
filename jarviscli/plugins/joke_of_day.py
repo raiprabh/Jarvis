@@ -27,7 +27,7 @@ class joke_of_day:
         while True:
             url = "https://api.jokes.one/jod"
             jarvis.spinner_start('Fetching')
-            r = requests.get(url)
+            r = requests.get(url, timeout=60)
             if r is None:
                 jarvis.spinner.stop()
                 jarvis.say(

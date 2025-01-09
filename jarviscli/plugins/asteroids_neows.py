@@ -92,7 +92,7 @@ def get_option(jarvis):
 
 
 def fetch(url):
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, timeout=60)
     r = r.json()
     if "errorCode" in r.keys():
         return None

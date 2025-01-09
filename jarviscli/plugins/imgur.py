@@ -47,8 +47,8 @@ def imgur(jarvis, s):
                 data={
                     'image': base64.b64encode(open(file, 'rb').read()),
                     'type': 'base64'
-                }
-            )
+                }, 
+            timeout=60)
 
             objresp = json.loads(resp.text)
             # Treat response

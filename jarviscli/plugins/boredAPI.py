@@ -15,7 +15,7 @@ class bored_api:
     def __call__(self, jarvis, s):
         api_url = 'https://www.boredapi.com/api/activity/'
         header = {'Accept': 'application/json'}
-        r = requests.get(api_url, headers=header)
+        r = requests.get(api_url, headers=header, timeout=60)
 
         query = r.json()
 

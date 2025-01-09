@@ -12,7 +12,7 @@ def get_location():
     if not location:
         print("Getting Location ... ")
         send_url = 'http://api.ipstack.com/check?access_key=8f7b2ef26a8f5e88eb25ae02606284c2&output=json&legacy=1'
-        r = requests.get(send_url)
+        r = requests.get(send_url, timeout=60)
         location = json.loads(r.text)
     return location
 
@@ -53,7 +53,7 @@ def weather(city=None):
                 city)
         )
         unit = ' ºC in '
-    r = requests.get(send_url)
+    r = requests.get(send_url, timeout=60)
     j = json.loads(r.text)
 
     # check if the city entered is not found

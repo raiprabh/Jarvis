@@ -10,7 +10,7 @@ headers = {'X-Auth-Token': API_KEY}
 
 
 def fetch(route):
-    r = requests.get(url + route, headers=headers)
+    r = requests.get(url + route, headers=headers, timeout=60)
     r = r.json()
     if "errorCode" in r.keys():
         return None

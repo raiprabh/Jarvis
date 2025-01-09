@@ -40,7 +40,7 @@ class ImgCompressorTest(PluginTest):
 
         os.mkdir(self.image_folder)
 
-        image1 = requests.get('http://i.imgur.com/xZ8x9ES.jpg', stream=True)
+        image1 = requests.get('http://i.imgur.com/xZ8x9ES.jpg', stream=True, timeout=60)
         if image1.status_code == 200:
             with open(os.path.join(self.image_folder, self.image1), 'wb') as f:
                 shutil.copyfileobj(image1.raw, f)
@@ -49,7 +49,7 @@ class ImgCompressorTest(PluginTest):
             print('Image Couldn\'t be retrieved')
             self.fail('Image Couldn\'t be retrieved')
 
-        image2 = requests.get('https://i.imgur.com/UYrdDFI.jpg', stream=True)
+        image2 = requests.get('https://i.imgur.com/UYrdDFI.jpg', stream=True, timeout=60)
         if image2.status_code == 200:
             with open(os.path.join(self.image_folder, self.image2), 'wb') as f:
                 shutil.copyfileobj(image2.raw, f)

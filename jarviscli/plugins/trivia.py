@@ -35,7 +35,7 @@ class trivia:
         function creates request to api and fetches the corresponding data
         """
         url = "https://opentdb.com/api.php?amount=1"
-        r = requests.get(url)
+        r = requests.get(url, timeout=60)
         return r.json()
 
     def true_false_question(self, jarvis, trivia_fetch):

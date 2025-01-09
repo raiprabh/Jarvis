@@ -21,7 +21,7 @@ class Scraper():
     def search(self, question):
         query = '+'.join(question.split(' '))
         url = f'https://www.google.com/search?q={query}&ie=utf-8&oe=utf-8'
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         soup = bs4.BeautifulSoup(response.text, 'html.parser')
 
         google_answers = soup.find_all("div", {"class": "BNeawe iBp4i AP7Wnd"})
