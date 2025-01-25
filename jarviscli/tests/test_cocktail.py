@@ -3,7 +3,7 @@ from unittest import mock
 import requests
 from tests import PluginTest
 from plugins.cocktail import Cocktail
-import random
+import secrets
 
 
 class CocktailTest(PluginTest):
@@ -21,7 +21,7 @@ class CocktailTest(PluginTest):
     def test_sample_cocktails_by_ingridient(self):
         # Test  Random Ingridient's Cocktails
         available_ingridients = self.test.ingridients
-        random_base_ingridient = random.randint(0,len(available_ingridients) - 1)
+        random_base_ingridient = secrets.SystemRandom().randint(0,len(available_ingridients) - 1)
         cocktails = self.test.get_cocktails_by_ingridient(random_base_ingridient)
         for c in cocktails:
             response = requests.get(

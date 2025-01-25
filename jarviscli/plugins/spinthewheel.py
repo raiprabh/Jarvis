@@ -2,6 +2,7 @@ from plugin import plugin
 import random
 import tkinter as tk
 import math
+import secrets
 
 
 def create_wheel(sectors):
@@ -24,7 +25,7 @@ def create_wheel(sectors):
     num_sectors = len(sectors)
     num_colors = num_sectors
     sector_angle = 360 / num_sectors
-    get_colors = lambda n: ["#%06x" % random.randint(0, 0xFFFFFF) for _ in range(n)]
+    get_colors = lambda n: ["#%06x" % secrets.SystemRandom().randint(0, 0xFFFFFF) for _ in range(n)]
     colors = get_colors(num_colors)
 
     # Draw the sectors of the wheel

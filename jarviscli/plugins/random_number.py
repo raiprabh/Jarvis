@@ -1,5 +1,5 @@
 from plugin import plugin
-import random
+import secrets
 
 
 @plugin("random number")
@@ -25,7 +25,7 @@ def generate_random_number(jarvis, numbers):
 
     pre_text = 'Your random number in range [%d, %d] is' \
                % (smallest_number, higher_number)
-    rand_number = random.randint(smallest_number, higher_number)
+    rand_number = secrets.SystemRandom().randint(smallest_number, higher_number)
     print(pre_text, rand_number)
 
 
