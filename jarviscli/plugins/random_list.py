@@ -1,6 +1,6 @@
 from plugin import plugin
-import random
 from colorama import Fore
+import secrets
 
 
 @plugin("random list")
@@ -10,7 +10,7 @@ def generate_random_list(jarvis, str):
     if len(ls) <= 1:
         jarvis.say("Enter at least 2 strings", Fore.RED)
     else:
-        random.shuffle(ls)
+        secrets.SystemRandom().shuffle(ls)
         for i in ls:
             jarvis.say(i, Fore.GREEN)
 
